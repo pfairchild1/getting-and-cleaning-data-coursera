@@ -1,0 +1,32 @@
+The run_analysis.R script performs the data preparation and then followed by the 5 steps required as described in the course project’s definition.
+
+1. Download the dataset
+      Datasets imported individually and columns were renamed for clarity
+
+2. Merge the training and the test sets to create one data set
+set (10299 rows, 561 columns) is created by merging x_train and x_test using rbind() function
+labels (10299 rows, 1 column) is created by merging y_train and y_test using rbind() function
+subject (10299 rows, 1 column) is created by merging subject_train and subject_test using rbind() function
+Merged_Data (10299 rows, 563 column) is created by merging Subject, labels and set using cbind() function
+
+3. Extract only the measurements on the mean and standard deviation for each measurement
+    TidyData (10299 rows, 88 columns) is created by subsetting Merged_Data, selecting only columns: subject, 
+        code and the measurements where the column name includes "mean" or "std".
+
+3. Use descriptive activity names to name the activities in the data set
+    Entire numbers in code column of the TidyData replaced with corresponding activity taken from second column of the activities variable
+
+4. Appropriately label the data set with descriptive variable names
+    code column in TidyData renamed into activities
+    All Acc in column’s name replaced by Accelerometer
+    All Gyro in column’s name replaced by Gyroscope
+    All BodyBody in column’s name replaced by Body
+    All Mag in column’s name replaced by Magnitude
+    All start with character f in column’s name replaced by Frequency
+    All start with character t in column’s name replaced by Time
+
+5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject
+    FinalData (180 rows, 88 columns) is created by sumarizing TidyData taking the means of each variable for each activity and each subject,
+    after grouped by subject and activity.
+
+6. Export FinalData into FinalData.txt file.n 
